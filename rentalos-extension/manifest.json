@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "rentalOS Compliance-Safe Assistant",
+  "version": "1.0.0",
+  "description": "Assistive reply drafting only. No automated posting.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://www.airbnb.com/hosting/inbox/*",
+    "https://www.airbnb.com/messages/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.airbnb.com/hosting/inbox/*",
+        "https://www.airbnb.com/messages/*"
+      ],
+      "js": [
+        "src/compliance/outboundGuard.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

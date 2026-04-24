@@ -1,0 +1,8 @@
+{
+  "name": "rentalos-api",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test:compliance": "node tests/compliance/no-automation-path.test.js"
+  }
+}

@@ -1,0 +1,29 @@
+name: Compliance Guardrails
+
+on:
+  pull_request:
+  push:
+    branches: ["**"]
+
+jobs:
+  compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Extension static guard
+        run: ./rentalos-extension/scripts/no-autopost-guards.sh
+
+      - name: API static guard
+        run: ./rentalos-api/scripts/no-autopost-endpoints.sh
+
+      - name: API compliance tests
+        run: |
+          cd rentalos-api
+          npm run test:compliance
