@@ -1,0 +1,171 @@
+# RentalOS Brand Guidelines (STR Industry)
+
+## 1) Brand Core
+
+### Brand Mission
+Enable short-term rental hosts to protect and grow guest trust through fast, practical, and compliant reputation workflows.
+
+### Brand Vision
+Become the operating standard for reputation intelligence in the short-term rental industry.
+
+### Brand Positioning
+RentalOS is the **STR reputation command center** for hosts and small property managers who need actionable clarity, not more dashboard noise.
+
+### Brand Promise
+When a host opens RentalOS, they know exactly:
+- what needs attention,
+- why it matters,
+- what to do next.
+
+---
+
+## 2) Brand Goals (12-month)
+
+1. Help hosts reduce negative-review response time by at least 20%.
+2. Improve consistency of review quality outcomes across active listings.
+3. Deliver measurable weekly value within one dashboard session.
+4. Build trusted, compliance-safe AI assistive workflows.
+
+---
+
+## 3) Target Audience (Primary)
+
+- Independent Airbnb hosts (1–5 listings)
+- Boutique STR property managers (5–30 listings)
+
+### Their pains
+- Reputation issues discovered too late
+- Inconsistent response quality across team members
+- Too many tools; no single view for reputation risk
+- Unclear next actions when negative feedback appears
+
+---
+
+## 4) Brand Personality
+
+- **Calm** under pressure
+- **Practical** and action-first
+- **Trustworthy** and policy-aware
+- **Empathetic** to host operations realities
+- **Clear** over clever
+
+### Tone of Voice
+- Use direct, concise language.
+- Prefer guidance over jargon.
+- Avoid fear-based messaging.
+- Emphasize control and confidence.
+
+---
+
+## 5) Messaging Framework
+
+### One-liner
+RentalOS helps Airbnb hosts detect reputation risk early and respond with confidence.
+
+### Value pillars
+1. **Clarity** — See risk before it compounds.
+2. **Speed** — Move from issue to action in minutes.
+3. **Confidence** — Use compliant, assistive response workflows.
+4. **Consistency** — Maintain quality across listings and team members.
+
+### Avoid saying
+- “Set-and-forget automation”
+- “Autopost to Airbnb”
+- “Guaranteed ratings increase”
+
+---
+
+## 6) Visual Identity
+
+### Logo direction
+- Clean geometric wordmark with subtle hospitality cues (home/doorway/compass forms).
+- Must remain legible at extension toolbar and dashboard sidebar sizes.
+
+### Iconography style
+- Rounded line icons with clear semantic mapping (risk, response, trend, listing).
+- Avoid generic marketing icon packs with mixed stroke widths.
+
+### Illustration/photo direction
+- Use modern urban + vacation rental contexts.
+- Prefer authentic host-operation moments over staged luxury imagery.
+
+---
+
+## 7) STR-Aligned Color System
+
+### Core palette
+- **Harbor Navy** `#0D1B2A` — trust, professionalism, night-ops clarity
+- **Ocean Teal** `#0EA5A4` — calm action, platform identity accent
+- **Sunrise Amber** `#F59E0B` — warning/attention states (moderate risk)
+- **Coral Alert** `#EF4444` — high-risk / critical alerts
+- **Sea Mist** `#E6F4F1` — subtle surfaces and positive context backgrounds
+- **Cloud White** `#F8FAFC` — primary background
+- **Slate Gray** `#334155` — body text
+
+### Semantic usage
+- Positive / improving trend: `#10B981`
+- Neutral / informational state: `#3B82F6`
+- Warning / medium risk: `#F59E0B`
+- Critical / high risk: `#EF4444`
+
+### Contrast guidance
+- Text/background pairings should target WCAG AA minimum contrast.
+- Avoid using Coral Alert as body text color on white; reserve for badges/alerts.
+
+---
+
+## 8) Typography
+
+### Primary
+- **Inter** (UI and dashboard text)
+
+### Fallback stack
+- `Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif`
+
+### Type scale guidance
+- H1: 32/40
+- H2: 24/32
+- H3: 20/28
+- Body: 16/24
+- Small/meta: 14/20
+
+---
+
+## 9) UX Expression Rules
+
+1. **Action-first layouts**: top modules should answer “What should I do now?”
+2. **Risk prominence**: unresolved risk items appear above vanity stats.
+3. **Reason transparency**: every flag should show reason codes and confidence context.
+4. **Assistive safeguards**: generated draft actions must be user-initiated and copy-first.
+5. **Calm urgency**: warn without panic; prioritize with clarity.
+
+---
+
+## 10) Brand Do/Don’t
+
+### Do
+- Show clear next-step CTAs (e.g., “Review top 3 risk items”).
+- Use operational language hosts use daily.
+- Keep dashboard copy concise and measurable.
+
+### Don’t
+- Over-brand at the expense of readability.
+- Use dark patterns or manipulative urgency.
+- Promise outcomes the product cannot guarantee.
+
+---
+
+## 11) UI Handoff Checklist (for future mockups)
+
+Before finalizing new UI directions, verify:
+- color and typography comply with this brand system,
+- risk state semantics are consistent,
+- CTA hierarchy matches action-first principle,
+- tone stays calm/practical,
+- accessibility contrast checks pass.
+
+When you share the UI/UX inspiration image, we can map it into:
+1. component-level styling tokens,
+2. dashboard IA updates,
+3. extension panel visual alignment,
+4. final MVP design system starter.
