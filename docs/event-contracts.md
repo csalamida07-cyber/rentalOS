@@ -79,3 +79,25 @@ All published async events MUST use the same envelope.
   "trace_id": "2af25cebf7da4d6caaf40fceea0fef4d"
 }
 ```
+
+## Retention line event taxonomy (MVP Line 1)
+
+The following event types are the canonical lifecycle for the Retention & Reputation Recovery MVP line:
+
+- `review_request_sent`
+- `review_request_delivered`
+- `review_received`
+- `review_sentiment_scored`
+- `risk_item_created`
+- `draft_generated`
+- `draft_copied`
+- `response_marked_sent`
+
+### Required payload conventions for MVP analytics
+
+- `review_request_sent` and `review_request_delivered` SHOULD include `listing_id`, `sequence_variant_id`, and `timing_bucket`.
+- `review_received` SHOULD include `listing_id`, `review_id`, and `rating`.
+- `review_sentiment_scored` SHOULD include `review_id`, `sentiment_label`, `sentiment_score`, and `reason_codes`.
+- `risk_item_created` SHOULD include `review_id`, `risk_category`, and `severity`.
+- `draft_generated` and `draft_copied` SHOULD include `review_id` and `tone`.
+- `response_marked_sent` SHOULD include `review_id` and `response_channel`.
