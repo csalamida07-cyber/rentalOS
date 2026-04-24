@@ -1,15 +1,15 @@
-# RentalOS / GuestOS
+# RentalOS
 
-RentalOS is the product repository for **GuestOS**, an operating system for short-term rental (STR) hosts.
+RentalOS is the product repository for **RentalOS**, an operating system for short-term rental (STR) hosts.
 
-GuestOS is the umbrella platform.
+RentalOS is the umbrella platform.
 **ReviewJet** is the first production module and the current MVP focus.
 
 ## Product Vision
 
 > “We don’t automate properties. We build autopilot businesses for hosts.”
 
-GuestOS is built to reduce host burnout, improve operational control, and grow reputation and revenue outcomes across the full guest lifecycle.
+RentalOS is built to reduce host burnout, improve operational control, and grow reputation and revenue outcomes across the full guest lifecycle.
 
 ## Current MVP Branch Focus: ReviewJet
 
@@ -50,7 +50,7 @@ backend/
     risk-queue.test.ts
 
 docs/
-  guestos-product-architecture.md
+  rentalos-product-architecture.md
   compliance-guardrails.md
   decision-protocol.md
   domain-model.md
@@ -77,7 +77,7 @@ rentalos-extension/
 - **Assistive, not autonomous** interactions
 - **Compliance-first** product decisions
 - **Host-time saved** is the key value metric
-- **Modular growth** from ReviewJet into full GuestOS
+- **Modular growth** from ReviewJet into full RentalOS
 
 ## Getting Started
 
@@ -106,12 +106,12 @@ npm test
 3. ReviewJet risk queue API endpoints
 4. ReviewJet dashboard and host workflow UI
 5. Weekly digest and pilot hardening
-6. Expand into adjacent GuestOS modules after ReviewJet KPI validation
+6. Expand into adjacent RentalOS modules after ReviewJet KPI validation
 
 ## Brand + Product Docs
 
 - Brand system and messaging: `docs/brand-guidelines.md`
-- GuestOS module architecture: `docs/guestos-product-architecture.md`
+- RentalOS module architecture: `docs/rentalos-product-architecture.md`
 - MVP execution backlog: `docs/mvp-line1-execution-plan.md`
 - Event contract spec: `docs/event-contracts.md`
 - KPI framework: `docs/kpi-framework.md`

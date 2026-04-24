@@ -1,4 +1,4 @@
-# GuestOS / RentalOS Brand Guidelines (STR Industry)
+# RentalOS Brand Guidelines (STR Industry)
 
 ## 1) Brand Core
 
@@ -9,11 +9,11 @@ Build autopilot businesses for Airbnb hosts by reducing burnout and giving opera
 Become the default operating system for serious STR operators who want scale, peace, and profitability.
 
 ### Brand Positioning
-**GuestOS** is the all-in-one STR operating system built on practical automation and AI assistive intelligence.
-**ReviewJet** is the reputation and review-retention module inside GuestOS.
+RentalOS is the all-in-one STR operating system built on practical automation and AI assistive intelligence.
+ReviewJet is the reputation and review-retention module inside RentalOS.
 
 ### Brand Promise
-When a host opens GuestOS (or ReviewJet), they know exactly:
+When a host opens RentalOS (or ReviewJet), they know exactly:
 - what needs attention,
 - why it matters,
 - what to do next.
@@ -66,7 +66,7 @@ When a host opens GuestOS (or ReviewJet), they know exactly:
 ## 5) Messaging Framework
 
 ### One-liner
-GuestOS helps Airbnb hosts run on autopilot with modular intelligence, starting with ReviewJet for reputation and retention performance.
+RentalOS helps Airbnb hosts run on autopilot with modular intelligence, starting with ReviewJet for reputation and retention performance.
 
 ### Value pillars
 1. **Control** — Run operations with clear visibility and routing.
@@ -88,7 +88,7 @@ GuestOS helps Airbnb hosts run on autopilot with modular intelligence, starting 
 ### Logo direction
 - Clean geometric wordmark with subtle hospitality cues (home/doorway/compass forms).
 - Must remain legible at extension toolbar and dashboard sidebar sizes.
-- Support dual-brand hierarchy: **GuestOS** (platform) and **ReviewJet** (module).
+- Support clear hierarchy: **RentalOS** (platform) and **ReviewJet** (module).
 
 ### Iconography style
 - Rounded line icons with clear semantic mapping (risk, response, trend, listing).
@@ -148,7 +148,7 @@ GuestOS helps Airbnb hosts run on autopilot with modular intelligence, starting 
 3. **Reason transparency**: every flag should show reason codes and confidence context.
 4. **Assistive safeguards**: generated draft actions must be user-initiated and copy-first.
 5. **Calm urgency**: warn without panic; prioritize with clarity.
-6. **Module clarity**: always show where the user is (GuestOS platform vs ReviewJet module).
+6. **Module clarity**: always show where the user is (RentalOS platform vs ReviewJet module).
 
 ---
 
@@ -179,6 +179,6 @@ Before finalizing new UI directions, verify:
 
 When you share the UI/UX inspiration image, we can map it into:
 1. component-level styling tokens,
-2. GuestOS + ReviewJet brand hierarchy placements,
+2. RentalOS + ReviewJet brand hierarchy placements,
 3. dashboard IA updates,
 4. final MVP design system starter.

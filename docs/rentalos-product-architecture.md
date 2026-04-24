@@ -1,14 +1,14 @@
-# GuestOS Product Architecture (RentalOS Repository)
+# RentalOS Product Architecture
 
 ## 1) Product Naming Model
 
-- **GuestOS**: Umbrella operating system brand for STR hosts.
+- **RentalOS**: Umbrella operating system brand for STR hosts.
 - **ReviewJet**: Reputation management module (current MVP branch focus).
-- **RentalOS repository**: Engineering codebase that powers GuestOS modules.
+- **RentalOS repository**: Engineering codebase that powers RentalOS modules.
 
 ## 2) Core Problem Statement
 
-STR hosts are experiencing operational burnout due to repetitive communication, review management overhead, inconsistent workflows, and fragmented tools. GuestOS exists to consolidate those workflows into one modular operating system.
+STR hosts are experiencing operational burnout due to repetitive communication, review management overhead, inconsistent workflows, and fragmented tools. RentalOS exists to consolidate those workflows into one modular operating system.
 
 ## 3) Big Idea
 
@@ -16,7 +16,7 @@ Run Airbnb operations like a business, not a side hustle, through guided automat
 
 > Product principle: assistive control over blind automation.
 
-## 4) GuestOS Module Map
+## 4) RentalOS Module Map
 
 1. **GuestFlow**
    - Booking-to-checkout communication orchestration.
@@ -64,7 +64,7 @@ Run Airbnb operations like a business, not a side hustle, through guided automat
 - Missed follow-up reduction
 - Reputation trend stability
 
-### GuestOS expansion KPI focus
+### RentalOS expansion KPI focus
 - Repeat booking rate
 - Emergency handling time
 - Cleaner quality score trend
@@ -84,4 +84,4 @@ Run Airbnb operations like a business, not a side hustle, through guided automat
 1. Ship ReviewJet MVP and validate retention/reputation outcomes.
 2. Stabilize onboarding, reporting, and module UX patterns.
 3. Introduce next adjacent module based on strongest pilot pain (likely GuestFlow or CleanerPulse).
-4. Expand into full GuestOS module suite with shared identity and operations layer.
+4. Expand into full RentalOS module suite with shared identity and operations layer.
