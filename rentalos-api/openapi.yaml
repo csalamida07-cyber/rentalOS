@@ -1,0 +1,586 @@
+openapi: 3.1.0
+info:
+  title: rentalOS API
+  version: 1.0.0
+  summary: Source of truth contract for rentalOS services.
+  description: |
+    Versioned API contract for extension and dashboard applications.
+
+    ## API Versioning
+    - URI versioning is mandatory: all endpoints are under `/v1`.
+    - New backwards-compatible fields MAY be added without version bump.
+    - Breaking changes require a new major path prefix (for example `/v2`).
+
+    ## Deprecation Policy
+    - Deprecated fields or endpoints are marked with `deprecated: true`.
+    - A minimum 90-day migration window is provided before removal.
+    - Deprecated responses include:
+      - `Deprecation: true`
+      - `Sunset: <RFC 7231 HTTP-date>`
+      - `Link: <migration-doc-url>; rel="deprecation"`
+
+servers:
+  - url: https://api.rentalos.com
+    description: Production
+  - url: https://staging-api.rentalos.com
+    description: Staging
+
+tags:
+  - name: Health
+  - name: Reviews
+  - name: ReviewHistory
+  - name: Analytics
+  - name: Risk
+
+security:
+  - OAuth2: []
+
+paths:
+  /v1/health:
+    get:
+      tags: [Health]
+      summary: Liveness check
+      operationId: getHealth
+      security: []
+      responses:
+        '200':
+          description: API is reachable.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, timestamp]
+                properties:
+                  status:
+                    type: string
+                    enum: [ok]
+                  timestamp:
+                    type: string
+                    format: date-time
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /v1/reviews:
+    post:
+      tags: [Reviews]
+      summary: Create a review
+      description: |
+        Creates a new review. This route is idempotent.
+
+        **Idempotency requirements**
+        - Clients MUST send an `Idempotency-Key` header (UUID v4 recommended).
+        - The server stores the first successful result for 24 hours.
+        - Replays with the same key and identical payload return the original response with:
+          - `200 OK`
+          - `Idempotency-Replayed: true`
+        - Replays with the same key but a different payload return `409 Conflict`.
+      operationId: createReview
+      security:
+        - OAuth2: [reviews:write]
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReviewRequest'
+      responses:
+        '201':
+          description: Review created.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/XRateLimitLimit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/XRateLimitRemaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/XRateLimitReset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        '200':
+          description: Idempotency replay of an already-created review.
+          headers:
+            Idempotency-Replayed:
+              schema:
+                type: boolean
+                enum: [true]
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          description: Idempotency key reused with a different request payload.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /v1/review-history:
+    get:
+      tags: [ReviewHistory]
+      summary: List historical review activity
+      operationId: listReviewHistory
+      description: Supports filtering, sorting, and cursor pagination.
+      security:
+        - OAuth2: [reviews:read]
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/SortByReviewHistory'
+        - $ref: '#/components/parameters/SortDirection'
+        - $ref: '#/components/parameters/ReviewStatusFilter'
+        - $ref: '#/components/parameters/ReviewerIdFilter'
+        - $ref: '#/components/parameters/CreatedAtFromFilter'
+        - $ref: '#/components/parameters/CreatedAtToFilter'
+      responses:
+        '200':
+          description: Review history page.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/XRateLimitLimit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/XRateLimitRemaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/XRateLimitReset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewHistoryPage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /v1/analytics/reviews:
+    get:
+      tags: [Analytics]
+      summary: Retrieve review analytics
+      operationId: getReviewAnalytics
+      description: Supports filtering, sorting, and cursor pagination over analytics rows.
+      security:
+        - OAuth2: [analytics:read]
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/SortByAnalytics'
+        - $ref: '#/components/parameters/SortDirection'
+        - $ref: '#/components/parameters/RegionFilter'
+        - $ref: '#/components/parameters/PropertyTypeFilter'
+        - $ref: '#/components/parameters/CreatedAtFromFilter'
+        - $ref: '#/components/parameters/CreatedAtToFilter'
+      responses:
+        '200':
+          description: Analytics page.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/XRateLimitLimit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/XRateLimitRemaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/XRateLimitReset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsPage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /v1/risk/listings/{listing_id}:
+    get:
+      tags: [Risk]
+      summary: Fetch risk profile for a listing
+      operationId: getRiskProfile
+      security:
+        - OAuth2: [risk:read]
+      parameters:
+        - name: listing_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Risk profile.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/XRateLimitLimit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/XRateLimitRemaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/XRateLimitReset'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskProfile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: JWT bearer token with scopes.
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.rentalos.com/oauth/token
+          scopes:
+            reviews:write: Create and submit reviews.
+            reviews:read: Read review history.
+            analytics:read: Read analytics datasets.
+            risk:read: Read listing risk profiles.
+
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Unique key to make POST requests safely retryable.
+      schema:
+        type: string
+        minLength: 8
+        maxLength: 128
+    Cursor:
+      name: cursor
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Opaque cursor for next-page retrieval.
+    Limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 50
+    SortByAnalytics:
+      name: sort_by
+      in: query
+      schema:
+        type: string
+        enum: [created_at, average_rating, review_count]
+        default: created_at
+    SortByReviewHistory:
+      name: sort_by
+      in: query
+      schema:
+        type: string
+        enum: [created_at, rating, status]
+        default: created_at
+    SortDirection:
+      name: sort_direction
+      in: query
+      schema:
+        type: string
+        enum: [asc, desc]
+        default: desc
+    ReviewStatusFilter:
+      name: status
+      in: query
+      schema:
+        $ref: '#/components/schemas/ReviewStatus'
+    ReviewerIdFilter:
+      name: reviewer_id
+      in: query
+      schema:
+        type: string
+    RegionFilter:
+      name: region
+      in: query
+      schema:
+        type: string
+    PropertyTypeFilter:
+      name: property_type
+      in: query
+      schema:
+        type: string
+    CreatedAtFromFilter:
+      name: created_at_from
+      in: query
+      schema:
+        type: string
+        format: date-time
+    CreatedAtToFilter:
+      name: created_at_to
+      in: query
+      schema:
+        type: string
+        format: date-time
+
+  headers:
+    XRateLimitLimit:
+      description: Request quota for the current window.
+      schema:
+        type: integer
+    XRateLimitRemaining:
+      description: Remaining requests in the current window.
+      schema:
+        type: integer
+    XRateLimitReset:
+      description: Unix epoch second when quota resets.
+      schema:
+        type: integer
+    RetryAfter:
+      description: Seconds until another request can be attempted.
+      schema:
+        type: integer
+
+  responses:
+    BadRequest:
+      description: Invalid request parameters or body.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Token does not contain required scopes.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Requested resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit exceeded.
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/RetryAfter'
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/XRateLimitLimit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/XRateLimitRemaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/XRateLimitReset'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            tooManyRequests:
+              value:
+                code: rate_limit_exceeded
+                message: Too many requests, please retry later.
+                details:
+                  window_seconds: 60
+                  limit: 120
+                trace_id: 7f6f7790-e51f-4a40-8f4f-46bfca5bd9d7
+
+  schemas:
+    Error:
+      type: object
+      required: [code, message, details, trace_id]
+      properties:
+        code:
+          type: string
+          description: Stable machine-readable error code.
+        message:
+          type: string
+          description: Human-readable error message.
+        details:
+          type: object
+          additionalProperties: true
+          description: Structured metadata for debugging.
+        trace_id:
+          type: string
+          description: Request trace identifier for support correlation.
+
+    ReviewStatus:
+      type: string
+      enum: [pending, approved, rejected]
+
+    CreateReviewRequest:
+      type: object
+      required:
+        - listing_id
+        - reviewer_id
+        - rating
+        - comment
+      properties:
+        listing_id:
+          type: string
+        reviewer_id:
+          type: string
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+        comment:
+          type: string
+          minLength: 1
+          maxLength: 3000
+
+    Review:
+      type: object
+      required:
+        - id
+        - listing_id
+        - reviewer_id
+        - rating
+        - comment
+        - status
+        - created_at
+      properties:
+        id:
+          type: string
+        listing_id:
+          type: string
+        reviewer_id:
+          type: string
+        rating:
+          type: integer
+        comment:
+          type: string
+        status:
+          $ref: '#/components/schemas/ReviewStatus'
+        created_at:
+          type: string
+          format: date-time
+
+    PageInfo:
+      type: object
+      required: [has_next, next_cursor]
+      properties:
+        has_next:
+          type: boolean
+        next_cursor:
+          type: string
+          nullable: true
+
+    ReviewHistoryEntry:
+      allOf:
+        - $ref: '#/components/schemas/Review'
+        - type: object
+          required: [event_type, event_at]
+          properties:
+            event_type:
+              type: string
+              enum: [created, updated, approved, rejected]
+            event_at:
+              type: string
+              format: date-time
+
+    ReviewHistoryPage:
+      type: object
+      required: [items, page]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReviewHistoryEntry'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+
+    AnalyticsRow:
+      type: object
+      required: [listing_id, average_rating, review_count, region, property_type, created_at]
+      properties:
+        listing_id:
+          type: string
+        average_rating:
+          type: number
+          format: float
+        review_count:
+          type: integer
+        region:
+          type: string
+        property_type:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    AnalyticsPage:
+      type: object
+      required: [items, page]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnalyticsRow'
+        page:
+          $ref: '#/components/schemas/PageInfo'
+
+    RiskProfile:
+      type: object
+      required: [listing_id, score, level, factors, updated_at]
+      properties:
+        listing_id:
+          type: string
+        score:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+        level:
+          type: string
+          enum: [low, medium, high]
+        factors:
+          type: array
+          items:
+            type: object
+            required: [name, impact]
+            properties:
+              name:
+                type: string
+              impact:
+                type: number
+                format: float
+        updated_at:
+          type: string
+          format: date-time
+
+x-rate-limits:
+  default:
+    window: 60s
+    limit: 120
+  routes:
+    /v1/reviews POST:
+      window: 60s
+      limit: 30
+    /v1/review-history GET:
+      window: 60s
+      limit: 60
+    /v1/analytics/reviews GET:
+      window: 60s
+      limit: 60
+    /v1/risk/listings/{listing_id} GET:
+      window: 60s
+      limit: 90
