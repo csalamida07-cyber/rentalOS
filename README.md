@@ -1,13 +1,24 @@
-# RentalOS
+# RentalOS / GuestOS
 
-RentalOS is an operations and reputation intelligence platform for **short-term rental (STR)** hosts and small property managers.
+RentalOS is the product repository for **GuestOS**, an operating system for short-term rental (STR) hosts.
 
-For the current MVP, RentalOS is focused on a single line of value:
+GuestOS is the umbrella platform.
+**ReviewJet** is the first production module and the current MVP focus.
 
-- **Retention & Reputation Recovery**
-- help hosts increase review yield quality
-- detect reputation risk quickly
-- reduce time-to-response on negative feedback
+## Product Vision
+
+> “We don’t automate properties. We build autopilot businesses for hosts.”
+
+GuestOS is built to reduce host burnout, improve operational control, and grow reputation and revenue outcomes across the full guest lifecycle.
+
+## Current MVP Branch Focus: ReviewJet
+
+ReviewJet is the reputation management module for retention and long-term listing health.
+
+- Turn good stays into more 5-star reviews
+- Detect and route negative feedback early
+- Improve response consistency and visibility
+- Reduce missed follow-ups after checkout
 
 ## MVP Focus (Now)
 
@@ -18,7 +29,8 @@ For the current MVP, RentalOS is focused on a single line of value:
 - Assistive response workflows (copy-only / user-initiated)
 
 ### Out of Scope (for now)
-- Dynamic pricing
+- Dynamic pricing and revenue management modules
+- Cleaner operations workflow automation
 - Full PMS or channel manager replacement
 - Autonomous posting/automation to OTA platforms
 - Broad multi-OTA inbox orchestration
@@ -38,6 +50,7 @@ backend/
     risk-queue.test.ts
 
 docs/
+  guestos-product-architecture.md
   compliance-guardrails.md
   decision-protocol.md
   domain-model.md
@@ -64,6 +77,7 @@ rentalos-extension/
 - **Assistive, not autonomous** interactions
 - **Compliance-first** product decisions
 - **Host-time saved** is the key value metric
+- **Modular growth** from ReviewJet into full GuestOS
 
 ## Getting Started
 
@@ -87,15 +101,17 @@ npm test
 
 ## Current MVP Milestones
 
-1. Retention event contract foundation
-2. Risk analysis and triage queue core
-3. Risk queue API endpoints
-4. RentalOS dashboard and host workflow UI
+1. ReviewJet event contract foundation
+2. ReviewJet risk analysis and triage queue core
+3. ReviewJet risk queue API endpoints
+4. ReviewJet dashboard and host workflow UI
 5. Weekly digest and pilot hardening
+6. Expand into adjacent GuestOS modules after ReviewJet KPI validation
 
 ## Brand + Product Docs
 
 - Brand system and messaging: `docs/brand-guidelines.md`
+- GuestOS module architecture: `docs/guestos-product-architecture.md`
 - MVP execution backlog: `docs/mvp-line1-execution-plan.md`
 - Event contract spec: `docs/event-contracts.md`
 - KPI framework: `docs/kpi-framework.md`

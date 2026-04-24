@@ -1,18 +1,19 @@
-# RentalOS Brand Guidelines (STR Industry)
+# GuestOS / RentalOS Brand Guidelines (STR Industry)
 
 ## 1) Brand Core
 
 ### Brand Mission
-Enable short-term rental hosts to protect and grow guest trust through fast, practical, and compliant reputation workflows.
+Build autopilot businesses for Airbnb hosts by reducing burnout and giving operators practical control over guest, reputation, and property workflows.
 
 ### Brand Vision
-Become the operating standard for reputation intelligence in the short-term rental industry.
+Become the default operating system for serious STR operators who want scale, peace, and profitability.
 
 ### Brand Positioning
-RentalOS is the **STR reputation command center** for hosts and small property managers who need actionable clarity, not more dashboard noise.
+**GuestOS** is the all-in-one STR operating system built on practical automation and AI assistive intelligence.
+**ReviewJet** is the reputation and review-retention module inside GuestOS.
 
 ### Brand Promise
-When a host opens RentalOS, they know exactly:
+When a host opens GuestOS (or ReviewJet), they know exactly:
 - what needs attention,
 - why it matters,
 - what to do next.
@@ -21,10 +22,11 @@ When a host opens RentalOS, they know exactly:
 
 ## 2) Brand Goals (12-month)
 
-1. Help hosts reduce negative-review response time by at least 20%.
-2. Improve consistency of review quality outcomes across active listings.
-3. Deliver measurable weekly value within one dashboard session.
-4. Build trusted, compliance-safe AI assistive workflows.
+1. Reduce host interventions in repetitive guest/review workflows.
+2. Improve review consistency and reputation resilience.
+3. Increase repeat booking and reactivation outcomes through lifecycle automations.
+4. Deliver module-level value quickly (start with ReviewJet, then expand).
+5. Keep AI behavior assistive and policy-safe.
 
 ---
 
@@ -32,12 +34,15 @@ When a host opens RentalOS, they know exactly:
 
 - Independent Airbnb hosts (1–5 listings)
 - Boutique STR property managers (5–30 listings)
+- Scaling co-host teams and agencies serving Airbnb clients
 
 ### Their pains
 - Reputation issues discovered too late
 - Inconsistent response quality across team members
 - Too many tools; no single view for reputation risk
 - Unclear next actions when negative feedback appears
+- Cleaning/turnover coordination overhead
+- Lead leakage from non-booking guest inquiries
 
 ---
 
@@ -54,24 +59,27 @@ When a host opens RentalOS, they know exactly:
 - Prefer guidance over jargon.
 - Avoid fear-based messaging.
 - Emphasize control and confidence.
+- Sound like an operator ally, not a marketing funnel.
 
 ---
 
 ## 5) Messaging Framework
 
 ### One-liner
-RentalOS helps Airbnb hosts detect reputation risk early and respond with confidence.
+GuestOS helps Airbnb hosts run on autopilot with modular intelligence, starting with ReviewJet for reputation and retention performance.
 
 ### Value pillars
-1. **Clarity** — See risk before it compounds.
+1. **Control** — Run operations with clear visibility and routing.
 2. **Speed** — Move from issue to action in minutes.
-3. **Confidence** — Use compliant, assistive response workflows.
+3. **Confidence** — Use compliant, assistive automation workflows.
 4. **Consistency** — Maintain quality across listings and team members.
+5. **Modularity** — Start with one module, expand without replatforming.
 
 ### Avoid saying
 - “Set-and-forget automation”
 - “Autopost to Airbnb”
 - “Guaranteed ratings increase”
+- “No effort needed from hosts”
 
 ---
 
@@ -80,6 +88,7 @@ RentalOS helps Airbnb hosts detect reputation risk early and respond with confid
 ### Logo direction
 - Clean geometric wordmark with subtle hospitality cues (home/doorway/compass forms).
 - Must remain legible at extension toolbar and dashboard sidebar sizes.
+- Support dual-brand hierarchy: **GuestOS** (platform) and **ReviewJet** (module).
 
 ### Iconography style
 - Rounded line icons with clear semantic mapping (risk, response, trend, listing).
@@ -88,6 +97,7 @@ RentalOS helps Airbnb hosts detect reputation risk early and respond with confid
 ### Illustration/photo direction
 - Use modern urban + vacation rental contexts.
 - Prefer authentic host-operation moments over staged luxury imagery.
+- For ReviewJet, use reputation/analytics motifs (dashboards, trendlines, feedback loops).
 
 ---
 
@@ -138,6 +148,7 @@ RentalOS helps Airbnb hosts detect reputation risk early and respond with confid
 3. **Reason transparency**: every flag should show reason codes and confidence context.
 4. **Assistive safeguards**: generated draft actions must be user-initiated and copy-first.
 5. **Calm urgency**: warn without panic; prioritize with clarity.
+6. **Module clarity**: always show where the user is (GuestOS platform vs ReviewJet module).
 
 ---
 
@@ -147,11 +158,13 @@ RentalOS helps Airbnb hosts detect reputation risk early and respond with confid
 - Show clear next-step CTAs (e.g., “Review top 3 risk items”).
 - Use operational language hosts use daily.
 - Keep dashboard copy concise and measurable.
+- Frame automation as controlled workflows with human oversight.
 
 ### Don’t
 - Over-brand at the expense of readability.
 - Use dark patterns or manipulative urgency.
 - Promise outcomes the product cannot guarantee.
+- Position the product as policy-bypassing or platform-circumventing.
 
 ---
 
@@ -166,6 +179,6 @@ Before finalizing new UI directions, verify:
 
 When you share the UI/UX inspiration image, we can map it into:
 1. component-level styling tokens,
-2. dashboard IA updates,
-3. extension panel visual alignment,
+2. GuestOS + ReviewJet brand hierarchy placements,
+3. dashboard IA updates,
 4. final MVP design system starter.
